@@ -5,26 +5,22 @@
   </head>
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-  <script src="js/clusters.js"></script>
+  
   <script src="js/pies.js"></script>
-  <script src="js/VideoFrame.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
   <body>
     <div class="ui secondary pointing menu">
       <a class="active item">
-        MagentaGo
+        Bose
       </a>
     </div>
     <div class="ui grid">
       <div class="twelve wide column">
-
-
-          <!-- <svg id="clusters" width="100%" height="50%"></svg> -->
-          
-
-          <div id="video_box">
+         
+        
+          <!--<div id="video_box">
               <img id="apple" src="assets/apple.png"/>
               <img id="samsung" src="assets/samsung.png"/>
               <img id="lg" src="assets/lg.png"/>
@@ -33,11 +29,11 @@
               <img id="video_overlays"/>
               <div>
                   <video id="video" loop autoplay width="960" height="540" >
-                      <!-- <source src="output.avi" type="video/avi"> -->
+                      //!<-- <source src="output.avi" type="video/avi"> --
                       <source src="assets/final.mp4" type="video/mp4"> 
                   </video>
               </div>
-          </div>
+          </div>-->
         
           
           <div style="width: 100%; overflow: hidden;">
@@ -52,7 +48,7 @@
       </div>
       <div class="four wide column centered">
        
-        <div id="cardList" style="height: 80%; overflow: hidden;">
+        <div id="cardList" style="height: 100%; overflow: hidden;">
           <div class="ui list" id="actualList">
           </div>
         </div>
@@ -66,57 +62,27 @@
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
       crossorigin="anonymous"></script>
     <script src="semantic/dist/semantic.min.js"></script>
-    <script src="js/tmobile.js"></script>
+    <script src="js/bose.js"></script>
 
     <script>
 
-      selected = []
 
-
-      function updateClusters1() {
-        var numClusters = $("#numClusters").val();
-        $.get( "/cluster?num=" + numClusters, function( data ) {
-          clearClusters()
-          visualizeClusters(JSON.parse(data), selected)
-        });
-      }
       var selected = undefined;
       function updatePeople(people) {
-        
+        selected = people[0].id;
+        displayPies(selected);
         var list = document.createElement('div');
         list.className="ui list";
         list.id="actualList";
         list.style="height: 100%;overflow: hidden;padding: 10px;";
 
-        //people = ['Ethan Tien', 'Chaitya Shah']
-        // frame id and stuff
-
-
-        // for(var i = 0; i < selected.length; i++) {
-        //   if (selected[i].data.courtCases != "None") {
-        //     people.push(selected[i]);
-        //   }
-        // }
-
-        // var len = selected.length;
-        // if (selected.length > 15) {
-        //   len = 15;
-        // }
-        // var count = courtsList.length
-        // while (count < 15 && count < selected.length) {
-        //   if (selected[count].data.courtCases === "None") {
-        //     courtsList.push(selected[count]);
-        //   }
-        //   count++;
-        // }
-        
         for(var i = 0; i < people.length; i++) {
             // Create the list item:
             var item = document.createElement('div');
-            item.className="pink ui card"
+            item.className="grey ui card"
             item.id = people[i].id;
             if (selected == people[i].id) {
-                item.style = "background-color: #D9499A"
+                item.style = "background-color: #c0c0c0"
             }
             var content = document.createElement('div');
             content.className="content"
@@ -139,18 +105,19 @@
             content.appendChild(desc);
             content.appendChild(desc1);
 
-
+            console.log(item);
             item.onclick = function(event){
                 if (selected == event.srcElement.id) {
-                    selected = undefined;
+                    selected = event.srcElement.id;
                 } else {
                     selected = event.srcElement.id;
                 }
-                var elements = document.getElementsByClassName("pink ui card");
+                displayPies(selected);
+                var elements = document.getElementsByClassName("grey ui card");
                 elements = Array.from(elements);
                 for (var i = 0; i < elements.length; i++) {
                     if (elements[i].id == event.srcElement.id) {
-                        elements[i].style = "background-color: #D9499A"
+                        elements[i].style = "background-color: #c0c0c0"
                     } else {
                         elements[i].style = ""
                     }
@@ -171,11 +138,8 @@
 
 
       data = {};
-      visualizeClusters(data, selected);
-      //visualizeHist([]);
-
-      updatePeople();
-      //visualizeHist(selected);
+      
+      getUsers();
     </script>
   </body>
 </html>
