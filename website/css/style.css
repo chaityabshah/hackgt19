@@ -1,0 +1,121 @@
+polyline{
+	opacity: .3;
+	stroke: black;
+	stroke-width: 2px;
+	fill: none;
+}
+
+#video_box{
+  position:relative;
+  padding-left: 20px;
+}
+#video_overlays {
+  position:absolute;
+  width:960px;
+  min-height:540px;
+  z-index:300000;
+  bottom:0px;
+  left:20px;
+  text-align:center;
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0);
+}
+
+#apple {
+  position:absolute;
+  width:40px;
+  min-height:40px;
+  z-index:300000;
+  bottom:40px;
+  left:810;
+  text-align:center;
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0);
+}
+
+#samsung {
+  position:absolute;
+  width:80px;
+  min-height:40px;
+  z-index:300000;
+  bottom:250;
+  left:730;
+  text-align:center;
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0);
+}
+
+#lg {
+  position:absolute;
+  width:60px;
+  min-height:40px;
+  z-index:300000;
+  bottom:375;
+  left:250;
+  text-align:center;
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0);
+}
+
+
+.phone {
+  position:absolute;
+  width:35px;
+  min-height:45px;
+  z-index:300000;
+  text-align:center;
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0);
+}
+
+.node {
+  cursor: pointer;
+}
+
+.node:hover {
+  /*stroke: #000;
+  stroke-width: 0.5px;*/
+  opacity: 0.3;
+}
+
+.node--leaf {
+  fill: #fff;
+}
+
+.label {
+  font: 12px "Maison Neue", Helvetica, Arial, sans-serif;
+  text-anchor: middle;
+/*   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff; */
+}
+
+.label,
+.node--root,
+.node--leaf {
+  pointer-events: none;
+}
+
+
+.bar {
+  cursor: pointer;
+
+}
+
+.bar:hover {
+  opacity: 0.3;
+  transition: opacity .6s;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
