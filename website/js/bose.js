@@ -30,12 +30,19 @@ function displayPies(selected)  {
             clearPies();
             visCompanyPie(dist[0], name);
             visDevicePie(dist[1], name);
+            clearTopSongs();
             visTopSongs();
+            clearHist();
+            visualizeHist(dist[2], name);
 
         });
     });
 }
 
+function clearTopSongs() {
+    top_songs = document.getElementById("top_songs");
+    top_songs.innerHTML = '';
+}
 function visTopSongs() {
     songs = [["https://semantic-ui.com/images/avatar/small/jenny.jpg", "Old Town Road - Lil Nas X"], ["https://semantic-ui.com/images/avatar/small/jenny.jpg", "Old Town Road - Lil Nas X"],["https://semantic-ui.com/images/avatar/small/jenny.jpg", "Old Town Road - Lil Nas X"]];
     
@@ -54,5 +61,4 @@ function visTopSongs() {
         p.appendChild(img);
         p.appendChild(span);
     }
-    //"<p><img class=\"ui avatar image\" src=\""+img_url+"\"> "+ title + "</p>"
 }

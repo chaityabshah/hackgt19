@@ -8,6 +8,7 @@
   
   <script src="js/pies.js"></script>
 
+
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
   <body>
@@ -41,13 +42,20 @@
             <div class="ui card">
                 <div class="content">
                   <div class="header">Your Top Songs</div>
-
                   <div id="top_songs" class="description">
                   </div>
                 </div>
               </div>
         </div>
-        
+        </div>
+        <div class="ui three column grid">
+        <div class="column">
+            <div class="ui card">
+                <div class="content">
+                  <svg id="hist"></svg>
+                  </div>
+                </div>
+              </div>
         </div>
       </div>
           <!--<div id="video_box">
@@ -76,7 +84,6 @@
           </div>-->
 
       <div class="four wide column centered">
-       
         <div id="cardList" style="height: 100%; overflow: hidden;">
           <div class="ui list" id="actualList">
           </div>
@@ -92,6 +99,7 @@
       crossorigin="anonymous"></script>
     <script src="semantic/dist/semantic.min.js"></script>
     <script src="js/bose.js"></script>
+    <script src="js/histogram.js"></script>
 
     <script>
 
@@ -166,7 +174,6 @@
         $("#actualList").replaceWith(list);
 
       }
-
 
       data = {};
       
