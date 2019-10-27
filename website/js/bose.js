@@ -1,4 +1,3 @@
-var currentFrameNumber = 1065;
 function getUsers() {
     fetch("/getUsers")
     .then(function(response) {

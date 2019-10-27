@@ -120,15 +120,6 @@ var gauge = function(container, configuration) {
 				.attr('class', 'label')
                 .attr('transform', centerTx);
                 
-        var ticks = svg.select(".axis").selectAll(".tick")
-                .data(dataset)
-                .append("svg:image")
-                .attr("xlink:href", function (d) { return d.img ; })
-                .attr("width", 100)
-                .attr("height", 100)
-                .attr("x", -120);
-                .attr("y", -50);
-
 		lg.selectAll('text')
 				.data(ticks)
 			.enter().append('text')
