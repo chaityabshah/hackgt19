@@ -16,10 +16,40 @@
         Bose
       </a>
     </div>
-    <div class="ui grid">
+    <div class="ui padded grid">
       <div class="twelve wide column">
-         
+        <div class="ui three column grid">
+          <div class="column">
+            <div class="ui raised card">
+              <div class="content">
+                <div class="description">
+                    <svg id="company"></svg>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="column">
+            <div class="ui raised card">
+              <div class="content">
+                <div class="description">
+                    <svg id="device"></svg>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="column">
+            <div class="ui card">
+                <div class="content">
+                  <div class="header">Your Top Songs</div>
+
+                  <div id="top_songs" class="description">
+                  </div>
+                </div>
+              </div>
+        </div>
         
+        </div>
+      </div>
           <!--<div id="video_box">
               <img id="apple" src="assets/apple.png"/>
               <img id="samsung" src="assets/samsung.png"/>
@@ -34,18 +64,17 @@
                   </video>
               </div>
           </div>-->
-        
           
+          <!--
           <div style="width: 100%; overflow: hidden;">
-
             <div style="width: 500px; float: left;"> 
                 <svg id="company" width="100%" height="10%"></svg>
              </div>
             <div style="margin-left: 520px;"> 
                 <svg id="device" width="100%" height="10%"></svg> 
             </div>
-          </div>
-      </div>
+          </div>-->
+
       <div class="four wide column centered">
        
         <div id="cardList" style="height: 100%; overflow: hidden;">
@@ -86,6 +115,7 @@
             }
             var content = document.createElement('div');
             content.className="content"
+            content.id = people[i].id;
             var header = document.createElement('div');
             header.className="header"
             header.appendChild(document.createTextNode(people[i].name + " (" + people[i].id + ")"));
@@ -106,6 +136,7 @@
             content.appendChild(desc1);
 
             console.log(item);
+            
             item.onclick = function(event){
                 if (selected == event.srcElement.id) {
                     selected = event.srcElement.id;
