@@ -30,27 +30,45 @@ function displayPies(selected)  {
                     return response.json();
                 })
                 .then(function(genres)  {
-                    console.log(genres)
-                    var name = "";
-                    for (var i = 0; i < presentCustomers.length; i++) {
-                        if (presentCustomers[i].id == selected) {
-                            name = presentCustomers[i];
+                    fetch("/getValence/" + selected)
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(valence) {
+                        console.log(valence)
+                        var name = "";
+                        for (var i = 0; i < presentCustomers.length; i++) {
+                            if (presentCustomers[i].id == selected) {
+                                name = presentCustomers[i];
+                            }
                         }
-                    }
-                    clearPies();
-                    visCompanyPie(genres, name);
-                    //visDevicePie(dist[1], name);
-                    clearTopSongs();
-                    visTopSongs(top5);
-                    //clearHist();
-                    //visualizeHist(dist[2], name);
-                    clearLineChart();
-                    if (dist["volume"]!= undefined) {
-                        visLineChart(dist, "volume", "linechart");
-                    }
-                    if (dist["bass"] != undefined) {
-                        visLineChart(dist, "bass", "linechart1");
-                    }
+                        clearPies();
+                        visCompanyPie(genres, name);
+
+                        var powerGauge = gauge('#power-gauge', {
+                            size: 300,
+                            clipWidth: 300,
+                            clipHeight: 300,
+                            ringWidth: 60,
+                            maxValue: 1,
+                            transitionMs: 4000,
+                        });
+                        powerGauge.render();
+                        powerGauge.update(valence);
+                        //visDevicePie(dist[1], name);
+                        clearTopSongs();
+                        visTopSongs(top5);
+                        //clearHist();
+                        //visualizeHist(dist[2], name);
+                        clearLineChart();
+                        if (dist["volume"]!= undefined) {
+                            visLineChart(dist, "volume", "linechart");
+                        }
+                        if (dist["bass"] != undefined) {
+                            visLineChart(dist, "bass", "linechart1");
+                        }
+                    });
+
                 })
             })
         })

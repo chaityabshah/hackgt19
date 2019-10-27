@@ -60,7 +60,7 @@ def get_genres(bbid):
 
 @app.route("/getValence/<bbid>")
 def get_valence(bbid):
-    return parser.get_valence(bbid)
+    return json.dumps(parser.get_valence(bbid))
     
 
 if __name__ == "__main__":
