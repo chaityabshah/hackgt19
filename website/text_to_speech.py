@@ -6,13 +6,19 @@
 import requests
 import xmltodict
 from google.cloud import texttospeech
+import os
+import socket
+
 
 def play_text_to_speech(text):
+
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "HackGT19-d602e3624538.json"
+
     # Instantiates a client
     client = texttospeech.TextToSpeechClient()
 
     # Set the text input to be synthesized
-    synthesis_input = texttospeech.types.SynthesisInput(text='. ' + text)
+    synthesis_input = texttospeech.types.SynthesisInput(text='dot ' + text)
 
     # Build the voice request, select the language code ("en-US") and the ssml
     # voice gender ("neutral")
@@ -35,7 +41,8 @@ def play_text_to_speech(text):
         print('Audio content written to file "output.mp3"')
 
     url = 'http://192.168.1.174:8090/'
-    my_ip = "http://192.168.1.52:8000/"
+    host_name = socket.gethostname() 
+    my_ip = "http://" + socket.gethostbyname(host_name) + ":8000/"
 
     req = "<play_info><app_key>od7y58yQRxoiA2J3IQdi53OAlGuNFvuk</app_key><url>" + my_ip + "assets/output.mp3</url><volume>60</volume><service>service text</service><reason>reason text</reason><message>message text</message></play_info>"
     x = requests.post(url + 'speaker', req)

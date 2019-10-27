@@ -5,7 +5,7 @@ from flask_cors import CORS
 from flask import request
 from trajectory import Trajectory
 import json
-
+import socket 
 
 
 traj = Trajectory()
@@ -47,7 +47,10 @@ def get_pie(frame, bbid):
     return json.dumps(traj.get_pie(int(frame), int(bbid)))
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, threaded=False)
+    host_name = socket.gethostname() 
+    host_ip = socket.gethostbyname(host_name) 
+    print("Hosting on", host_ip)
+    app.run(host=host_ip, port=8000, threaded=False)
 
 def get_app():
     return app

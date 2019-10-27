@@ -9,6 +9,8 @@ import json
 import os
 import requests
 
+from text_to_speech import play_text_to_speech
+
 class Capture:
 
     def __init__(self):
@@ -42,6 +44,7 @@ class Capture:
             if self.context != name:
                 self.context = None
                 print("{} connected.".format(name))
+                play_text_to_speech("{} connected.".format(name))
             self.context = name
             
         def try_create(d, key, val):
