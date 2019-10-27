@@ -67,6 +67,7 @@ if __name__ == '__main__':
     a = get_auth()
     # print (get_music_features(a, '21kOVEG3bDCVphKhXL8XmQ'))
     #print (get_music_features_bulk(a, '4JpKVNYnVcJ8tuMKjAj50A,2NRANZE9UCmPAS5XVbXL40,24JygzOLM0EmRQeGtFcIcG'))
+    print (get_music_features_bulk(a, '5ZnOG96081GKWdYzICCzIu,2xizRhme7pYeITbH1NLLGt,2YpeDb67231RjR0MgVLzsG'))
     #print (get_artist_from_id_bulk(a, '5ZnOG96081GKWdYzICCzIu,2xizRhme7pYeITbH1NLLGt,2YpeDb67231RjR0MgVLzsG'))
     #divinity, tchaik, otr
-    print (get_song_genres(a, '5ZnOG96081GKWdYzICCzIu,2xizRhme7pYeITbH1NLLGt,2YpeDb67231RjR0MgVLzsG'))
+    #print (get_song_genres(a, '5ZnOG96081GKWdYzICCzIu,2xizRhme7pYeITbH1NLLGt,2YpeDb67231RjR0MgVLzsG'))

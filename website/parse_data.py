@@ -55,6 +55,10 @@ class Parser():
         
         counts = defaultdict(int)
         for genre in genres:
+            if genre == 'edm':
+                genre = 'EDM'
+            else:
+                genre = ' '.join([x.capitalize() for x in  genre.split(' ')])
             counts[genre] += 1
         return counts
 
