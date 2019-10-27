@@ -10,6 +10,7 @@ import os
 import requests
 
 from text_to_speech import play_text_to_speech
+from bose_library import set_bass, set_volume, get_bass, get_volume
 
 class Capture:
 
@@ -40,12 +41,51 @@ class Capture:
     def switch(self, message):
 
 
+        def block_for_volume(val):
+            loop = True
+            while loop:
+                loop = get_volume() != val
+            print("good v")
+
+        def block_for_bass(val):
+            loop = True
+            while loop:
+                loop = get_bass() != val
+            print("good b")
+
         def connect(name):
             if self.context != name:
                 self.context = None
+                if name not in self.db:
+                    print("{} connected. New user.".format(name))
+                    play_text_to_speech("{} connected. New user.".format(name))
+                elif "volume" in self.db[name] and "bass" not in self.db[name]:
+                    volume = self.db[name]["volume"][-1]["volume"]
+                    set_volume(volume)
+                    block_for_volume(volume)
+                    print("{} connected. Volume restored to {}.".format(name, volume))
+                    play_text_to_speech("{} connected. Volume restored to {}.".format(name, volume))
+                elif "volume" not in self.db[name] and "bass" in self.db[name]:
+                    bass = self.db[name]["bass"][-1]["bass"]
+                    set_bass(bass)
+                    block_for_bass(bass)
+                    print("{} connected. Bass reduction restored to {}.".format(name, bass))
+                    play_text_to_speech("{} connected. Bass reduction restored to {}.".format(name, bass))
+                else:
+                    volume = self.db[name]["volume"][-1]["volume"]
+                    bass = self.db[name]["bass"][-1]["bass"]
+                    set_volume(volume)
+                    set_bass(bass)
+                    block_for_volume(volume)
+                    block_for_bass(bass)
+                    print(get_bass(), get_volume())
+                    print("{} connected. Volume restored to {} and bass reduction restored to {}.".format(name, volume, bass))
+                    play_text_to_speech("{} connected. Volume restored to {} and bass reduction restored to {}.".format(name, volume, bass))
+
                 print("{} connected.".format(name))
-                play_text_to_speech("{} connected.".format(name))
+
             self.context = name
+            
             
         def try_create(d, key, val):
             if key not in d: d[key] = val
