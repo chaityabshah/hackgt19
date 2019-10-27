@@ -3,12 +3,13 @@ import os
 from flask import Flask, render_template, send_from_directory
 from flask_cors import CORS
 from flask import request
-from trajectory import Trajectory
+# from trajectory import Trajectory
+from parse_data import Parser
 import json
 import socket 
 
 
-traj = Trajectory()
+parser = Parser()
 
 app = Flask(__name__)
 CORS(app)
@@ -39,12 +40,12 @@ def update_heat_map(frame, bbid):
     return send_from_directory("assets", "heatmap.png")
 
 @app.route("/getUsers")
-def get_customers():
-    return json.dumps(traj.get_customers(1065))
+def get_users():
+    return json.dumps(parser.get_users())
 
 @app.route("/getUserData/<bbid>")
-def get_pie(bbid):
-    return json.dumps(traj.get_pie(1065, int(bbid)))
+def get_user_data(bbid):
+    return json.dumps(parser.get_user_data(bbid))
 
 if __name__ == "__main__":
     try:
