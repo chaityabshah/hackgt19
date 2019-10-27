@@ -38,8 +38,12 @@ def play_text_to_speech(text):
         print('Audio content written to file "output.mp3"')
 
     url = 'http://192.168.1.174:8090/'
-    host_name = socket.gethostname() 
-    my_ip = "http://" + socket.gethostbyname(host_name) + ":8000/"
+    
+    try:
+        host_name = socket.gethostname() 
+        my_ip = "http://" + socket.gethostbyname(host_name) + ":8000/"
+    except:
+        my_ip = "http://192.168.1.151:8000/"
 
     req = "<play_info><app_key>od7y58yQRxoiA2J3IQdi53OAlGuNFvuk</app_key><url>" + my_ip + "assets/output.mp3</url><volume>60</volume><service>service text</service><reason>reason text</reason><message>message text</message></play_info>"
     x = requests.post(url + 'speaker', req)

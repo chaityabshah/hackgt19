@@ -22,7 +22,7 @@ class Parser():
     def get_users(self):
         with open("log.json") as f:
             self.customers = json.load(f)
-        return self.customers.keys()
+        return list(self.customers.keys())
 
 
     def get_user_data(self, bbid):

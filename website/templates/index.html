@@ -7,12 +7,17 @@
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   
   <script src="js/pies.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
 
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+  
   <body>
-    <div class="ui secondary pointing menu">
+    <div class="ui inverted secondary pointing menu">
       <a class="active item">
         Bose
       </a>
@@ -21,7 +26,7 @@
       <div class="twelve wide column">
         <div class="ui three column grid">
           <div class="column">
-            <div class="ui raised card">
+            <div class="ui raised fluid card">
               <div class="content">
                 <div class="description">
                     <svg id="company"></svg>
@@ -30,7 +35,7 @@
           </div>
         </div>
         <div class="column">
-            <div class="ui raised card">
+            <div class="ui raised fluid card">
               <div class="content">
                 <div class="description">
                     <svg id="device"></svg>
@@ -39,7 +44,7 @@
           </div>
         </div>
         <div class="column">
-            <div class="ui card">
+            <div class="ui raised fluid card">
                 <div class="content">
                   <div class="header">Your Top Songs</div>
                   <div id="top_songs" class="description">
@@ -48,16 +53,26 @@
               </div>
         </div>
         </div>
-        <div class="ui three column grid">
+        <div class="ui two column grid">
         <div class="column">
-            <div class="ui card">
+            <div class="ui raised fluid card">
                 <div class="content">
-                  <svg id="hist"></svg>
+                  <!--<svg id="hist"></svg>-->
+                  <div id="linechart"></div>
                   </div>
                 </div>
               </div>
+              <div class="column">
+                  <div class="ui raised fluid card">
+                      <div class="content">
+                        <!--<svg id="hist"></svg>-->
+                        <div id="linechart1"></div>
+                        </div>
+                      </div>
+                    </div>
         </div>
-      </div>
+       
+        </div>
           <!--<div id="video_box">
               <img id="apple" src="assets/apple.png"/>
               <img id="samsung" src="assets/samsung.png"/>
@@ -98,15 +113,17 @@
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
       crossorigin="anonymous"></script>
     <script src="semantic/dist/semantic.min.js"></script>
-    <script src="js/bose.js"></script>
     <script src="js/histogram.js"></script>
+    <script src="js/linechart.js"></script>
+    <script src="js/bose.js"></script>
+    
 
     <script>
 
 
       var selected = undefined;
       function updatePeople(people) {
-        selected = people[0].id;
+        selected = people[0];
         displayPies(selected);
         var list = document.createElement('div');
         list.className="ui list";
@@ -116,28 +133,28 @@
         for(var i = 0; i < people.length; i++) {
             // Create the list item:
             var item = document.createElement('div');
-            item.className="grey ui card"
-            item.id = people[i].id;
-            if (selected == people[i].id) {
+            item.className="grey ui fluid card"
+            item.id = people[i];
+            if (selected == people[i]) {
                 item.style = "background-color: #c0c0c0"
             }
             var content = document.createElement('div');
             content.className="content"
-            content.id = people[i].id;
+            content.id = people[i];
             var header = document.createElement('div');
             header.className="header"
-            header.appendChild(document.createTextNode(people[i].name + " (" + people[i].id + ")"));
-            header.id = people[i].id;
+            header.appendChild(document.createTextNode(people[i] + " (" + people[i] + ")"));
+            header.id = people[i];
             var desc = document.createElement('div');
             desc.className="description";
             var descrip = "Phone Number: "+ people[i].phone;
             desc.appendChild(document.createTextNode(descrip));
-            desc.id = people[i].id;
+            desc.id = people[i];
 
             var desc1 = document.createElement('div');
             desc1.className="description";
             var descrip1 = "Email: " + people[i].email;
-            desc1.id = people[i].id;
+            desc1.id = people[i];
             desc1.appendChild(document.createTextNode(descrip1));
             content.appendChild(header);
             content.appendChild(desc);
@@ -152,7 +169,7 @@
                     selected = event.srcElement.id;
                 }
                 displayPies(selected);
-                var elements = document.getElementsByClassName("grey ui card");
+                var elements = document.getElementsByClassName("grey ui fluid card");
                 elements = Array.from(elements);
                 for (var i = 0; i < elements.length; i++) {
                     if (elements[i].id == event.srcElement.id) {

@@ -39,7 +39,7 @@ def send_semantic(path):
 
 @app.route("/updateHeatMap/<frame>/<bbid>")
 def update_heat_map(frame, bbid):
-    traj.set_heatmap(int(frame), int(bbid))
+    #traj.set_heatmap(int(frame), int(bbid))
     return send_from_directory("assets", "heatmap.png")
 
 @app.route("/getUsers")
@@ -50,9 +50,13 @@ def get_users():
 def get_user_data(bbid):
     return json.dumps(parser.get_user_data(bbid))
 
+@app.route("/getTop5/<bbid>")
+def get_top_5(bbid):
+    return json.dumps(list(parser.get_top_5_for_user(bbid)))
+    
+
 if __name__ == "__main__":
     try:
-
         host_name = socket.gethostname() 
         host_ip = socket.gethostbyname(host_name)
     except:
