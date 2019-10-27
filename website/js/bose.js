@@ -25,26 +25,33 @@ function displayPies(selected)  {
                 return response.json();
             })
             .then(function(top5) {
-                var name = "";
-                for (var i = 0; i < presentCustomers.length; i++) {
-                    if (presentCustomers[i].id == selected) {
-                        name = presentCustomers[i];
+                fetch("/getGenres/" + selected)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(genres)  {
+                    console.log(genres)
+                    var name = "";
+                    for (var i = 0; i < presentCustomers.length; i++) {
+                        if (presentCustomers[i].id == selected) {
+                            name = presentCustomers[i];
+                        }
                     }
-                }
-                //clearPies();
-                //visCompanyPie(dist[0], name);
-                //visDevicePie(dist[1], name);
-                clearTopSongs();
-                visTopSongs(top5);
-                //clearHist();
-                //visualizeHist(dist[2], name);
-                clearLineChart();
-                if (dist["volume"]!= undefined) {
-                    visLineChart(dist, "volume", "linechart");
-                }
-                if (dist["bass"] != undefined) {
-                    visLineChart(dist, "bass", "linechart1");
-                }
+                    clearPies();
+                    visCompanyPie(genres, name);
+                    //visDevicePie(dist[1], name);
+                    clearTopSongs();
+                    visTopSongs(top5);
+                    //clearHist();
+                    //visualizeHist(dist[2], name);
+                    clearLineChart();
+                    if (dist["volume"]!= undefined) {
+                        visLineChart(dist, "volume", "linechart");
+                    }
+                    if (dist["bass"] != undefined) {
+                        visLineChart(dist, "bass", "linechart1");
+                    }
+                })
             })
         })
     });

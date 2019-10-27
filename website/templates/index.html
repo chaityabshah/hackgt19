@@ -16,9 +16,9 @@
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
   
-  <body>
-    <div class="ui secondary pointing menu">
-      <a class="active item">
+  <body style="background: #212121">
+    <div class="ui secondary pointing menu" style="background: #303030;margin-bottom: 0px;"">
+      <a class="active item" style="color: white">
         Bose
       </a>
     </div>
@@ -28,6 +28,7 @@
           <div class="column">
             <div class="ui raised fluid card">
               <div class="content">
+                <div class="header">Your Genres</div>
                 <div class="description">
                     <svg id="company"></svg>
                 </div>
@@ -35,7 +36,7 @@
           </div>
         </div>
         <div class="column">
-            <div class="ui raised fluid card">
+            <div class="ui raised fluid inverted card">
               <div class="content">
                 <div class="description">
                     <svg id="device"></svg>
@@ -145,20 +146,7 @@
             header.className="header"
             header.appendChild(document.createTextNode(people[i] + " (" + people[i] + ")"));
             header.id = people[i];
-            var desc = document.createElement('div');
-            desc.className="description";
-            var descrip = "Phone Number: "+ people[i].phone;
-            desc.appendChild(document.createTextNode(descrip));
-            desc.id = people[i];
-
-            var desc1 = document.createElement('div');
-            desc1.className="description";
-            var descrip1 = "Email: " + people[i].email;
-            desc1.id = people[i];
-            desc1.appendChild(document.createTextNode(descrip1));
             content.appendChild(header);
-            content.appendChild(desc);
-            content.appendChild(desc1);
 
             console.log(item);
             

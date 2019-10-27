@@ -5,58 +5,6 @@ polyline{
 	fill: none;
 }
 
-#video_box{
-  position:relative;
-  padding-left: 20px;
-}
-#video_overlays {
-  position:absolute;
-  width:960px;
-  min-height:540px;
-  z-index:300000;
-  bottom:0px;
-  left:20px;
-  text-align:center;
-  background: rgb(0, 0, 0); /* fallback color */
-  background: rgba(0, 0, 0, 0);
-}
-
-#apple {
-  position:absolute;
-  width:40px;
-  min-height:40px;
-  z-index:300000;
-  bottom:40px;
-  left:810;
-  text-align:center;
-  background: rgb(0, 0, 0); /* fallback color */
-  background: rgba(0, 0, 0, 0);
-}
-
-#samsung {
-  position:absolute;
-  width:80px;
-  min-height:40px;
-  z-index:300000;
-  bottom:250;
-  left:730;
-  text-align:center;
-  background: rgb(0, 0, 0); /* fallback color */
-  background: rgba(0, 0, 0, 0);
-}
-
-#lg {
-  position:absolute;
-  width:60px;
-  min-height:40px;
-  z-index:300000;
-  bottom:375;
-  left:250;
-  text-align:center;
-  background: rgb(0, 0, 0); /* fallback color */
-  background: rgba(0, 0, 0, 0);
-}
-
 
 .phone {
   position:absolute;
