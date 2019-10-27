@@ -53,6 +53,10 @@ def get_user_data(bbid):
 @app.route("/getTop5/<bbid>")
 def get_top_5(bbid):
     return json.dumps(list(parser.get_top_5_for_user(bbid)))
+
+@app.route("/getGenres/<bbid>")
+def get_genres(bbid):
+    return json.dumps(parser.get_top_genres(bbid))
     
 
 if __name__ == "__main__":

@@ -9,6 +9,7 @@
 # from scipy.ndimage.filters import gaussian_filter, convolve
 import json
 from collections import defaultdict
+import spotify
 
 class Parser():
 
@@ -42,9 +43,24 @@ class Parser():
         top_5 = sorted(counts, key=counts.get, reverse=True)[:5]
         top_5_images = [images[x] for x in top_5]
         return top_5, top_5_images
+    
+    def get_top_genres(self, bbid):
+        with open("log.json") as f:
+            self.customers = json.load(f)
+        songs = [song['trackID'].split(':')[2] for song in self.customers[bbid]['nowPlaying']][:100]
+
+        a = spotify.get_auth()
+        song_query = ','.join(songs)
+        genres = spotify.get_song_genres(a, song_query)
+        
+        counts = defaultdict(int)
+        for genre in genres:
+            counts[genre] += 1
+        return counts
 
 
 if __name__ == "__main__":
     p = Parser()
-    print (p.get_top_5_for_user('ethantien'))
+    #print (p.get_top_5_for_user('ethantien'))
+    print (p.get_top_genres('ethantien'))
     #print (p.get_user_data('ethantien'))
