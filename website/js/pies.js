@@ -67,6 +67,7 @@ function visCompanyPie(data, name) {
         .style('opacity', opacity)
         .style('stroke', 'white')
         .on("mouseover", function(d) {
+          console.log(d)
             d3.selectAll('path')
               .style("opacity", otherOpacityOnHover);
             d3.select(this) 
@@ -126,9 +127,6 @@ function visCompanyPie(data, name) {
           })
         .each(function(d, i) { this._current = i; });
 
-    g.append("path")
-        .attr("d", arc)
-        .style("fill", function(d) { return color(d.data); });
 
     
     

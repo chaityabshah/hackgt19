@@ -32,6 +32,7 @@ function displayPies(selected)  {
                         console.log(valence)
                         var name = selected;
                         clearPies();
+                        console.log(genres);
                         visCompanyPie(genres, name);
                         clearGauge();
                         var powerGauge = gauge('#power-gauge', {
