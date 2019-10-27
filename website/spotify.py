@@ -63,7 +63,7 @@ def get_artist_from_id_bulk(auth_atts, song_ids):
     }
     response = requests.get('https://api.spotify.com/v1/tracks/', headers=headers, params=params)
     response = json.loads(response.text)
-    return [song['album']['artists'][0]['uri'].split(':')[2] for song in response['tracks']]
+    return [song['album']['artists'][0]['uri'].split(':')[2] for song in response['tracks'] if song and song['album'] and song['album']['artists'] and song['album']['artists'][0]]
 
 def get_song_genres(auth_atts, song_ids):
     album_ids = ','.join(get_artist_from_id_bulk(auth_atts, song_ids))
@@ -82,6 +82,6 @@ if __name__ == '__main__':
     # print (get_music_features(a, '21kOVEG3bDCVphKhXL8XmQ'))
     #print (get_music_features_bulk(a, '4JpKVNYnVcJ8tuMKjAj50A,2NRANZE9UCmPAS5XVbXL40,24JygzOLM0EmRQeGtFcIcG'))
     print (get_valence_bulk(a, '5ZnOG96081GKWdYzICCzIu,2xizRhme7pYeITbH1NLLGt,2YpeDb67231RjR0MgVLzsG'))
-    #print (get_artist_from_id_bulk(a, '5ZnOG96081GKWdYzICCzIu,2xizRhme7pYeITbH1NLLGt,2YpeDb67231RjR0MgVLzsG'))
+    print (get_artist_from_id_bulk(a, '5ZnOG96081GKWdYzICCzIu,2xizRhme7pYeITbH1NLLGt,2YpeDb67231RjR0MgVLzsG'))
     #divinity, tchaik, otr
     #print (get_song_genres(a, '5ZnOG96081GKWdYzICCzIu,2xizRhme7pYeITbH1NLLGt,2YpeDb67231RjR0MgVLzsG'))
