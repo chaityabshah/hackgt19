@@ -35,9 +35,13 @@ class Parser():
             self.customers = json.load(f)
         songs = self.customers[bbid]['nowPlaying']
         counts = defaultdict(int)
+        images = defaultdict(str)
         for song in songs:
             counts[song['track'] + ' - ' + song['artist']] += 1
-        return sorted(counts, key=counts.get, reverse=True)[:5]
+            images[song['track'] + ' - ' + song['artist']] = song['image']
+        top_5 = sorted(counts, key=counts.get, reverse=True)[:5]
+        top_5_images = [images[x] for x in top_5]
+        return top_5, top_5_images
 
 
 if __name__ == "__main__":
