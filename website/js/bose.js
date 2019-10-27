@@ -1,7 +1,6 @@
 var currentFrameNumber = 1065;
-var currentFrame = $('#currentFrame');
 function getUsers() {
-    fetch("/getCustomers/" + currentFrameNumber)
+    fetch("/getUsers")
     .then(function(response) {
         return response.json();
       })
@@ -10,15 +9,14 @@ function getUsers() {
       });
 }
 
-
 function displayPies(selected)  {
     console.log(selected);
-    fetch("/getPie/" + currentFrameNumber + "/" + selected)
+    fetch("/getUserData/" + selected)
     .then(function(response) {
         return response.json();
     })
     .then(function(dist) {
-        fetch("/getCustomers/" + currentFrameNumber)
+        fetch("/getUsers")
         .then(function(response) {
             return response.json();
         })
@@ -29,21 +27,32 @@ function displayPies(selected)  {
                     name = presentCustomers[i].name;
                 }
             }
-            
             clearPies();
             visCompanyPie(dist[0], name);
             visDevicePie(dist[1], name);
+            visTopSongs();
 
         });
     });
 }
 
-
-
-/*
-setInterval(function() {
+function visTopSongs() {
+    songs = [["https://semantic-ui.com/images/avatar/small/jenny.jpg", "Old Town Road - Lil Nas X"], ["https://semantic-ui.com/images/avatar/small/jenny.jpg", "Old Town Road - Lil Nas X"],["https://semantic-ui.com/images/avatar/small/jenny.jpg", "Old Town Road - Lil Nas X"]];
     
-
-    
-}, 600)
-*/
+    top_songs = document.getElementById("top_songs");
+    for (var i = 0; i < songs.length; i++) {
+        img_url = songs[i][0];
+        title = songs[i][1];
+        
+        var p = document.createElement('p');
+        var span = document.createElement('span');
+        var img = document.createElement('img');
+        img.className = "ui avatar image";
+        img.src = img_url;
+        span.innerHTML = (i+1) + ". " + title;
+        top_songs.appendChild(p);
+        p.appendChild(img);
+        p.appendChild(span);
+    }
+    //"<p><img class=\"ui avatar image\" src=\""+img_url+"\"> "+ title + "</p>"
+}

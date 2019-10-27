@@ -38,13 +38,13 @@ def update_heat_map(frame, bbid):
     traj.set_heatmap(int(frame), int(bbid))
     return send_from_directory("assets", "heatmap.png")
 
-@app.route("/getCustomers/<frame>")
-def get_customers(frame):
-    return json.dumps(traj.get_customers(int(frame)))
+@app.route("/getUsers")
+def get_customers():
+    return json.dumps(traj.get_customers(1065))
 
-@app.route("/getPie/<frame>/<bbid>")
-def get_pie(frame, bbid):
-    return json.dumps(traj.get_pie(int(frame), int(bbid)))
+@app.route("/getUserData/<bbid>")
+def get_pie(bbid):
+    return json.dumps(traj.get_pie(1065, int(bbid)))
 
 if __name__ == "__main__":
 <<<<<<< Updated upstream
