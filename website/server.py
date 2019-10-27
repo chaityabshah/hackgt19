@@ -10,10 +10,6 @@ import socket
 from capture import Capture
 import threading
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 parser = Parser()
 thread = threading.Thread(target=lambda : Capture())
 thread.start()
