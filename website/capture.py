@@ -45,13 +45,11 @@ class Capture:
             loop = True
             while loop:
                 loop = get_volume() != val
-            print("good v")
 
         def block_for_bass(val):
             loop = True
             while loop:
                 loop = get_bass() != val
-            print("good b")
 
         def connect(name):
             if self.context != name:
@@ -101,8 +99,9 @@ class Capture:
                     packet = {"timestamp":ts}
                     packet["volume"] = int(message["updates"]["volumeUpdated"]["volume"]["targetvolume"])
                     packet["muteenabled"] = message["updates"]["volumeUpdated"]["volume"]["muteenabled"] != "false"
-                    print(packet)
-                    self.db[self.context]["volume"].append(packet)
+                    if packet["volume"] != 60:
+                        print(packet)
+                        self.db[self.context]["volume"].append(packet)
 
                 # Bass update
                 if "bassUpdated" in message["updates"] and self.context is not None:

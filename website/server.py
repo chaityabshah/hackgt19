@@ -7,9 +7,12 @@ from flask import request
 from parse_data import Parser
 import json
 import socket 
-
+from capture import Capture
+import threading
 
 parser = Parser()
+thread = threading.Thread(target=lambda : Capture())
+thread.start()
 
 app = Flask(__name__)
 CORS(app)
