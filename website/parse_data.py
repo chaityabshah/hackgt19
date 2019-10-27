@@ -36,7 +36,7 @@ class Parser():
         songs = self.customers[bbid]['nowPlaying']
         counts = defaultdict(int)
         for song in songs:
-            counts[song['track']] += 1
+            counts[song['track'] + ' - ' + song['artist']] += 1
         return sorted(counts, key=counts.get, reverse=True)[:5]
 
 
