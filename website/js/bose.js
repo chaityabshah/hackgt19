@@ -15,12 +15,7 @@ function displayPies(selected)  {
         return response.json();
     })
     .then(function(dist) {
-        fetch("/getUsers")
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(presentCustomers) {
-            fetch("/getTop5/" + selected)
+        fetch("/getTop5/" + selected)
             .then(function(response) {
                 return response.json();
             })
@@ -36,19 +31,14 @@ function displayPies(selected)  {
                     })
                     .then(function(valence) {
                         console.log(valence)
-                        var name = "";
-                        for (var i = 0; i < presentCustomers.length; i++) {
-                            if (presentCustomers[i].id == selected) {
-                                name = presentCustomers[i];
-                            }
-                        }
+                        var name = selected;
                         clearPies();
                         visCompanyPie(genres, name);
-
+                        clearGauge();
                         var powerGauge = gauge('#power-gauge', {
-                            size: 300,
-                            clipWidth: 300,
-                            clipHeight: 300,
+                            size: 350,
+                            clipWidth: 350,
+                            clipHeight: 200,
                             ringWidth: 60,
                             maxValue: 1,
                             transitionMs: 4000,
@@ -71,7 +61,6 @@ function displayPies(selected)  {
 
                 })
             })
-        })
     });
 }
 

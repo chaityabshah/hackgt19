@@ -1,3 +1,8 @@
+function clearGauge() {
+    $('#power-gauge').empty();
+    $('#power-gauge').removeAttr("style");
+}
+
 var gauge = function(container, configuration) {
 	var that = {};
 	var config = {
@@ -113,7 +118,17 @@ var gauge = function(container, configuration) {
 		
 		var lg = svg.append('g')
 				.attr('class', 'label')
-				.attr('transform', centerTx);
+                .attr('transform', centerTx);
+                
+        var ticks = svg.select(".axis").selectAll(".tick")
+                .data(dataset)
+                .append("svg:image")
+                .attr("xlink:href", function (d) { return d.img ; })
+                .attr("width", 100)
+                .attr("height", 100)
+                .attr("x", -120);
+                .attr("y", -50);
+
 		lg.selectAll('text')
 				.data(ticks)
 			.enter().append('text')
