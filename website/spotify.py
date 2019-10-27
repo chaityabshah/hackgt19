@@ -41,7 +41,7 @@ def get_valence_bulk(auth_atts, song_ids):
     }
     response = requests.get('https://api.spotify.com/v1/audio-features/', headers=headers, params=params)
     response = json.loads(response.text)
-    return mean([float(song['valence']) for song in response['audio_features']])
+    return mean([float(song['valence']) for song in response['audio_features'] if song])
 
 def get_album_from_id_bulk(auth_atts, song_ids):
     headers = {

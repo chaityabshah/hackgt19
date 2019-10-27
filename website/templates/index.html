@@ -18,8 +18,9 @@
   
   <body style="background: #212121">
     <div class="ui secondary pointing menu" style="background: #303030;margin-bottom: 0px;"">
-      <a class="active item" style="color: white">
-        Bose
+      <img src="assets/logo.jpg" alt="logo" style="max-width:4%;">
+      <a class="active item" style="color: white;font-size:18px">
+        Bose Profiles
       </a>
     </div>
     <div class="ui padded grid">
@@ -122,7 +123,7 @@
             content.id = people[i];
             var header = document.createElement('div');
             header.className="header"
-            header.appendChild(document.createTextNode(people[i] + " (" + people[i] + ")"));
+            header.appendChild(document.createTextNode(people[i]));
             header.id = people[i];
             content.appendChild(header);
 

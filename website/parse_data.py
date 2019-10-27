@@ -75,5 +75,5 @@ class Parser():
 if __name__ == "__main__":
     p = Parser()
     #print (p.get_top_5_for_user('ritibshah'))
-    print (p.get_top_genres('ritibshah'))
+    print (p.get_valence('ethantien'))
     #print (p.get_user_data('ethantien'))
