@@ -1,3 +1,4 @@
+Chaitya Shah, Nick Petosa, Ethan Tien, Maria Saito
 Running:
 run `python3 server.py` on the same local network as the Bose SoundTouch enabled device. Make sure code points to the correct IP.
 
