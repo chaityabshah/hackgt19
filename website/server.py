@@ -47,10 +47,14 @@ def get_pie(frame, bbid):
     return json.dumps(traj.get_pie(int(frame), int(bbid)))
 
 if __name__ == "__main__":
+<<<<<<< Updated upstream
     host_name = socket.gethostname() 
     host_ip = socket.gethostbyname(host_name) 
     print("Hosting on", host_ip)
     app.run(host=host_ip, port=8000, threaded=False)
+=======
+    app.run(host="192.168.1.52", port=8000, threaded=False)
+>>>>>>> Stashed changes
 
 def get_app():
     return app
