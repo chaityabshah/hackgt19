@@ -7,9 +7,8 @@
 # import matplotlib
 # from scipy.ndimage.morphology import grey_dilation
 # from scipy.ndimage.filters import gaussian_filter, convolve
-
-
-
+import json
+from collections import defaultdict
 
 class Parser():
 
@@ -30,16 +29,18 @@ class Parser():
         with open("log.json") as f:
             self.customers = json.load(f)
         return self.customers[bbid]
-
-
-
-
-
-
-
-
+    
+    def get_top_5_for_user(self, bbid):
+        with open("log.json") as f:
+            self.customers = json.load(f)
+        songs = self.customers[bbid]['nowPlaying']
+        counts = defaultdict(int)
+        for song in songs:
+            counts[song['track']] += 1
+        return sorted(counts, key=counts.get, reverse=True)[:5]
 
 
 if __name__ == "__main__":
-    t = Trajectory()
-    print(t.get_pie(10000))
+    p = Parser()
+    print (p.get_top_5_for_user('ethantien'))
+    #print (p.get_user_data('ethantien'))
