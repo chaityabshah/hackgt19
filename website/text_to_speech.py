@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-# need to run
-# export GOOGLE_APPLICATION_CREDENTIALS="/Users/ethantien/Downloads/HackGT19-d602e3624538.json"
-# and change my IP address accordingly 
 import requests
 import xmltodict
 from google.cloud import texttospeech
