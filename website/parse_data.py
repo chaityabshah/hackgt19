@@ -47,7 +47,7 @@ class Parser():
     def get_top_genres(self, bbid):
         with open("log.json") as f:
             self.customers = json.load(f)
-        songs = [song['trackID'].split(':')[2] for song in self.customers[bbid]['nowPlaying']][:100]
+        songs = [song['trackID'].split(':')[2] for song in self.customers[bbid]['nowPlaying']][:50]
 
         a = spotify.get_auth()
         song_query = ','.join(songs)
@@ -74,6 +74,6 @@ class Parser():
 
 if __name__ == "__main__":
     p = Parser()
-    #print (p.get_top_5_for_user('ethantien'))
-    print (p.get_top_genres('ethantien'))
+    #print (p.get_top_5_for_user('ritibshah'))
+    print (p.get_top_genres('ritibshah'))
     #print (p.get_user_data('ethantien'))
