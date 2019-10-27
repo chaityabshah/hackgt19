@@ -62,6 +62,15 @@ class Parser():
             counts[genre] += 1
         return counts
 
+    def get_valence(self, bbid):
+        with open("log.json") as f:
+            self.customers = json.load(f)
+        songs = [song['trackID'].split(':')[2] for song in self.customers[bbid]['nowPlaying']][:100]
+
+        a = spotify.get_auth()
+        song_query = ','.join(songs)
+        return spotify.get_valence_bulk(a, song_query)
+
 
 if __name__ == "__main__":
     p = Parser()

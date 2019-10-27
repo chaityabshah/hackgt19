@@ -1,5 +1,8 @@
 import requests
 import json
+
+def mean(arr):
+    return sum(arr) / len(arr)
 def get_auth():
     headers = {
         'Authorization': 'Basic NjllNWViZTg1N2Y1NGNlZDkwOGZhYjcxYzdkMTFkMzM6YWJkNzExYjM0MjViNDMzZTg3NWFlNmRkOTA5Y2ZlNTE=',
@@ -28,6 +31,17 @@ def get_music_features_bulk(auth_atts, song_ids):
     }
     response = requests.get('https://api.spotify.com/v1/audio-features/', headers=headers, params=params)
     return json.loads(response.text)
+
+def get_valence_bulk(auth_atts, song_ids):
+    headers = {
+        'Authorization': auth_atts['token_type'] + ' ' + auth_atts['access_token'],
+    }
+    params = {
+        'ids': song_ids,
+    }
+    response = requests.get('https://api.spotify.com/v1/audio-features/', headers=headers, params=params)
+    response = json.loads(response.text)
+    return mean([float(song['valence']) for song in response['audio_features']])
 
 def get_album_from_id_bulk(auth_atts, song_ids):
     headers = {
@@ -67,7 +81,7 @@ if __name__ == '__main__':
     a = get_auth()
     # print (get_music_features(a, '21kOVEG3bDCVphKhXL8XmQ'))
     #print (get_music_features_bulk(a, '4JpKVNYnVcJ8tuMKjAj50A,2NRANZE9UCmPAS5XVbXL40,24JygzOLM0EmRQeGtFcIcG'))
-    print (get_music_features_bulk(a, '5ZnOG96081GKWdYzICCzIu,2xizRhme7pYeITbH1NLLGt,2YpeDb67231RjR0MgVLzsG'))
+    print (get_valence_bulk(a, '5ZnOG96081GKWdYzICCzIu,2xizRhme7pYeITbH1NLLGt,2YpeDb67231RjR0MgVLzsG'))
     #print (get_artist_from_id_bulk(a, '5ZnOG96081GKWdYzICCzIu,2xizRhme7pYeITbH1NLLGt,2YpeDb67231RjR0MgVLzsG'))
     #divinity, tchaik, otr
     #print (get_song_genres(a, '5ZnOG96081GKWdYzICCzIu,2xizRhme7pYeITbH1NLLGt,2YpeDb67231RjR0MgVLzsG'))

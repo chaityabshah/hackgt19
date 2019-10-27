@@ -57,6 +57,10 @@ def get_top_5(bbid):
 @app.route("/getGenres/<bbid>")
 def get_genres(bbid):
     return json.dumps(parser.get_top_genres(bbid))
+
+@app.route("/getValence/<bbid>")
+def get_valence(bbid):
+    return parser.get_valence(bbid)
     
 
 if __name__ == "__main__":
